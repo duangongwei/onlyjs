@@ -23,7 +23,7 @@ import Label from '../theme/bootstrap/widgets/Label';
 import Group from '../theme/bootstrap/widgets/Group';
 import Container from '../theme/bootstrap/widgets/Container';
 import Alert from '../theme/bootstrap/widgets/Alert';
-
+ 
 export default class LoginPage extends Page {
 
     constructor() {
@@ -88,7 +88,7 @@ export default class LoginStyle extends Stylesheet {
             }
         ];
     }
-
+ 
     loginForm() {
         return [
             'form', {
@@ -104,7 +104,7 @@ export default class LoginStyle extends Stylesheet {
         ]
     }
 }
- 
+
 3）创建一个页面事件监听器：js/LoginListener.js
 
 import Listener from '../com/onlyjs/Listener';
