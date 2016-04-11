@@ -1,54 +1,60 @@
-const dom_tag_mapper = {
-    'value': 'value',
-    'width': 'width',
-    'height': 'height',
-    'clientHeight': 'clientHeight',
-    'clientWidth': 'clientWidth',
-    'scrollHeight': 'scrollHeight',
-    'scrollWidth': 'scrollWidth',
-    'scrollLeft': 'scrollLeft',
-    'scrollTop': 'scrollTop',
-    'offsetHeight': 'offsetHeight',
-    'offsetWidth': 'offsetWidth',
-    'offsetLeft': 'offsetLeft',
-    'offsetTop': 'offsetTop'
-};
-
-const tag_dom_mapper = {
-    'id': 'id',
-    'name': 'name',
-    'type': 'type',
-    'value': 'value',
-    'width': 'width',
-    'height': 'height',
-    'title': 'title',
-    'lang': 'lang',
-    'dir': 'dir',
-    'class': 'className',
-    'text': 'innerText'
-};
+import DomHelper from './DomHelper';
 
 export default class DomSyncer {
+
+    static synChildren(tag, node, doc) {
+        let tagChildren = tag.children;
+        let nodeChildren = node.childNodes;
+        if (!tagChildren && !nodeChildren) {
+            return;
+        }
+        if (!tagChildren && nodeChildren) {
+            for (let i in nodeChildren) {
+                node.removeChild(nodeChildren[i]);
+            }
+            return;
+        }
+        if (tagChildren && !nodeChildren) {
+            node.appendChild(DomHelper.createFragment(tagChildren, doc));
+            return;
+        }
+        let equals = DomHelper.findEquals(tagChildren, nodeChildren);
+        if (equals.length == 0) {
+            for (let i in nodeChildren) {
+                node.removeChild(nodeChildren[i]);
+            }
+            return;
+        }
+        if (equals.length == 2) {
+            for (let i in nodeChildren) {
+                if (i != equals[1]) {
+                    node.removeChild(nodeChildren[i]);
+                }
+            }
+            tagChildren.splice(equals[0], 1);
+            node.appendChild(DomHelper.createFragment(tagChildren, doc));
+            return;
+        }
+        let begin = equals[1], end = equals[equals.length - 1];
+        for (let i = 0; i < begin; i++) {
+            node.removeChild(nodeChildren[i]);
+        }
+        for (let i = end + 1; i < nodeChildren.length; i++) {
+            node.removeChild(nodeChildren[i]);
+        }
+        begin = equals[0], end = equals[equals.length - 2];
+        node.appendChild(DomHelper.createFragment(
+            tagChildren.slice(0, begin)), doc);
+        node.appendChild(DomHelper.createFragment(
+            tagChildren.slice(end + 1, tagChildren.length)), doc);
+    }
 
     static syncFromDom(doc, page) {
         page.findWith((tag)=> {
             if (!tag.get('id')) return true;
 
             let node = doc.getElementById(tag.get('id'));
-            for (let attr in dom_tag_mapper) {
-                let value = node[attr];
-                if (!value) {
-                    continue;
-                }
-                if (typeof value == 'object') {
-                    let obj = tag.get(dom_tag_mapper[attr]);
-                    for (let key in value) {
-                        obj[key] = value[key];
-                    }
-                } else {
-                    tag.set(dom_tag_mapper[attr], value);
-                }
-            }
+            DomHelper.copyAttrsFromDom(node, tag);
             console.log('sync from dom: ' + tag);
             return true;
         }, page.html.body);
@@ -59,20 +65,7 @@ export default class DomSyncer {
             if (!tag.get('id')) return true;
 
             let node = doc.getElementById(tag.get('id'));
-            for (let attr in tag_dom_mapper) {
-                let value = tag.get(attr);
-                if (typeof value == 'undefined') {
-                    continue;
-                }
-                if (typeof value == 'object') {
-                    let obj = node[tag_dom_mapper[attr]];
-                    for (let key in value) {
-                        obj[key] = value[key];
-                    }
-                } else {
-                    node[tag_dom_mapper[attr]] = value;
-                }
-            }
+            DomHelper.copyAttrsToDom(tag, node);
             console.log('sync to dom: ' + tag);
             return true;
         }, page.html.body);
