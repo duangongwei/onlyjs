@@ -104,7 +104,7 @@ export default class LoginStyle extends Stylesheet {
         ]
     }
 }
-
+ 
 3）创建一个页面事件监听器：js/LoginListener.js
 
 import Listener from '../com/onlyjs/Listener';
