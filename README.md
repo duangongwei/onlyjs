@@ -1,17 +1,17 @@
 # OnlyJS
-A web development framework using only javascript
+A framework let you only use javascript to develop the Web application.
 
-Based on the newest features of ES6 (modules, classes, inheritance, etc.), references to the Java Swing front-end development mode, to unify the web development to JavaScript (similar to Swing using pure Java), so that developers do not need to write HTML, CSS, and to operate on the DOM too, all functions are through the interaction between JavaScript objects.
+Based on the newest features of ES6 (modules, classes, inheritance, etc.), references to the Java Swing front-end development mode, to unify the web development to JavaScript (similar to Swing using pure Java), so that developers do not need to write HTML, CSS, and to operate on the DOM too, all functions can be implemented through the interaction between JavaScript objects, all the JS code you written can run out of browser (that is, the code can run in a variety of terminal).
 
-## 核心思想
-基于ES6最新特性（模块化、类、继承等），参考Java Swing前端开发模式，将Web开发统一到Javascript上（类似Swing的纯Java开发），让开发人员可以不用编写html、css，也不用操作DOM，一切功能都通过JS对象之间的交互来实现。
+### 核心思想
+基于ES6最新特性（模块化、类、继承等），参考Java Swing前端开发模式，将Web开发统一到Javascript上（类似Swing的纯Java开发），让开发人员可以`不用编写HTML、CSS，也不用操作DOM`，一切功能都通过JS对象之间的交互来实现，所有JS代码都可以脱离浏览器运行（一套代码可以运行在多种终端）。
 
-* 传统Web开发： 一个页面 = html文件(文档结构) + css文件(显示样式) + js文件(控制逻辑、数据处理)；
-* 使用OnlyJS开发：
+* **传统Web开发**： 一个页面 = html文件(文档结构) + css文件(显示样式) + js文件(控制逻辑、数据处理)；
+* **使用OnlyJS开发**：
 一个页面 = Page.js(组件化开发) + Stylesheet.js(分组样式) + Listener.js(用户交互) + Service.js(业务逻辑)；
 
 ### 样例代码：
-1）创建一个登录页面：js/LoginPage.js (基于Bootstrap定制的组件库)
+1）创建一个登录页面：LoginPage.js (基于Bootstrap定制的组件库)
 ```
 import Page from '../com/onlyjs/Page';
 import Meta from '../com/onlyjs/tags/Meta';
@@ -56,7 +56,7 @@ export default class LoginPage extends Page {
     }
 }
 ```
-2）创建页面内部样式表：js/LoginStyle.js
+2）创建页面内部样式表：LoginStyle.js
 ```
 import Stylesheet from '../com/onlyjs/Stylesheet';
 
@@ -104,7 +104,7 @@ export default class LoginStyle extends Stylesheet {
     }
 }
 ```
-3）创建一个页面事件监听器：js/LoginListener.js
+3）创建一个页面事件监听器：LoginListener.js
 ```
 import Listener from '../com/onlyjs/Listener';
 
