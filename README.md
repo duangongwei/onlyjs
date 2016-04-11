@@ -4,7 +4,7 @@ A web development framework using only javascript
 Based on the newest features of ES6 (modules, classes, inheritance, etc.), references to the Java Swing front-end development mode, to unify the web development to JavaScript (similar to Swing using pure Java), so that developers do not need to write HTML, CSS, and to operate on the DOM too, all functions are through the interaction between JavaScript objects.
 
 ## 核心思想
-基于ES6最新特性（模块化、类、继承等），参考Java Swing前端开发模式，将Web开发统一到Javascript上（类似Swing的纯Java开发），让开发人员可以`不用编写html、css，也不用操作DOM`，一切功能都通过JS对象之间的交互来实现。
+基于ES6最新特性（模块化、类、继承等），参考Java Swing前端开发模式，将Web开发统一到Javascript上（类似Swing的纯Java开发），让开发人员可以`不用编写HTML、CSS，也不用操作DOM`，一切功能都通过JS对象之间的交互来实现，所有编写的JS代码都可以脱离浏览器运行（也就是说，一套代码可以运行在多种终端）。
 
 * **传统Web开发**： 一个页面 = html文件(文档结构) + css文件(显示样式) + js文件(控制逻辑、数据处理)；
 * **使用OnlyJS开发**：
