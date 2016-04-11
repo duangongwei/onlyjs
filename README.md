@@ -1,5 +1,7 @@
-# onlyjs
+# OnlyJS
 A web development framework using only javascript
+
+Based on the newest features of ES6 (modules, classes, inheritance, etc.), references to the Java Swing front-end development mode, to unify the web development to JavaScript (similar to Swing using pure Java), so that developers not need to write HTML, CSS, also they do not operate on the DOM, all functions are through the interaction between JavaScript objects.
 
 ## 核心思想
 基于ES6最新特性（模块化、类、继承等），参考Java Swing前端开发模式，将Web开发统一到Javascript上（类似Swing的纯Java开发），让开发人员可以不用编写html、css，也不用操作DOM，一切功能都通过JS对象之间的交互来实现。
