@@ -1,12 +1,14 @@
 const own_attrs = [
-    'type', 'keyCode', 'altKey', 'ctrlKey', 'shiftKey', 'metaKey',
-    'clientX', 'clientY', 'offsetX', 'offsetY', 'button'
+    'type', 'keyCode', 'button',
+    'altKey', 'ctrlKey', 'shiftKey', 'metaKey',
+    'clientX', 'clientY', 'offsetX', 'offsetY'
 ];
 
 export default class Event {
 
-    constructor(domEvt, tag) {
-        this.target = tag;
+    constructor(domEvt) {
+        this.target = domEvt.target.id;
+        this._origin = domEvt;
         for (let key in own_attrs) {
             this[key] = domEvt[key];
         }
@@ -32,6 +34,6 @@ export default class Event {
     }
 
     stopPropagation() {
-        this.set('propagation', false);
+        this._origin.stopPropagation();
     }
 }

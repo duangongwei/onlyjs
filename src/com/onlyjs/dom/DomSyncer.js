@@ -30,7 +30,7 @@ const tag_dom_mapper = {
 
 export default class DomSyncer {
 
-    static syncToPage(doc, page) {
+    static syncFromDom(doc, page) {
         page.findWith((tag)=> {
             if (!tag.get('id')) return true;
 
@@ -49,12 +49,12 @@ export default class DomSyncer {
                     tag.set(dom_tag_mapper[attr], value);
                 }
             }
-            //console.log('sync to tag: ' + tag);
+            console.log('sync from dom: ' + tag);
             return true;
         }, page.html.body);
     }
 
-    static syncToDoc(page, doc) {
+    static syncToDom(page, doc) {
         page.findWith((tag)=> {
             if (!tag.get('id')) return true;
 

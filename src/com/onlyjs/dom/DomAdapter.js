@@ -9,12 +9,8 @@ export default class DomAdapter {
 
     constructor(document, page, listener) {
         this.doc = document;
-        this.switchPage(page, listener);
-    }
-
-    switchPage(page, listener) {
-        this.destroyPage(this.page);
-        this.unbindEvents(this.listener);
+        this.page = page;
+        this.lsn = listener;
 
         this.buildPage(page);
         this.bindEvents(listener);
@@ -32,7 +28,6 @@ export default class DomAdapter {
             }
             console.log('bind: ' + node.id);
         }
-        this.listener = listener;
     }
 
     unbindEvents(listener) {
@@ -52,43 +47,27 @@ export default class DomAdapter {
     transformHandler(callback) {
         let self = this;
         return (e)=> {
-            DomSyncer.syncToPage(self.doc, self.page);
+            DomSyncer.syncFromDom(self.doc, self.page);
             let event = new Event(e);
-            let result = callback.apply(self.listener, event);
-            if (event.render()) {
-
-            }
-            DomSyncer.syncToDoc(self.page, self.doc);
+            let result = callback.apply(self.lsn, event);
+            DomSyncer.syncToDom(self.page, self.doc);
         }
-    }
-
-    destroyPage(page) {
-        this.doc.head.children.length = 0;
-        this.doc.body.children.length = 0;
     }
 
     buildPage(page) {
         if (!page && !page.html) return;
 
-        let head = this.createFragment(null);
-        for (let child of page.html.head.children) {
-            head.appendChild(this.createFragment(child));
-        }
+        let head = this.createFragment(page.html.head.children);
         for (let item of page.cssUrls) {
             head.appendChild(this.createElement(new Link(item)));
         }
         this.doc.head.appendChild(head);
 
-        let body = this.createFragment(null);
-        for (let child of page.html.body.children) {
-            body.appendChild(this.createFragment(child));
-        }
+        let body = this.createFragment(page.html.body.children);
         for (let item of page.jsUrls) {
             body.appendChild(this.createElement(new Script(item)));
         }
         this.doc.body.appendChild(body);
-
-        this.page = page;
     }
 
     createFragment(tag) {

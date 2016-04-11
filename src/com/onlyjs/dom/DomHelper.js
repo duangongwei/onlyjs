@@ -4,17 +4,12 @@ export default class DomHelper {
 
     static createFragment(tag, doc) {
         let frag = doc.createDocumentFragment();
-        if (!(tag instanceof Tag)) {
-            return frag;
-        }
-        let node = DomHelper.createElement(tag, doc);
-        frag.appendChild(node);
-        for (let child of tag.children) {
-            if (child.children && child.children.length != 0) {
-                node.appendChild(DomHelper.createFragment(child, doc));
-            } else {
-                node.appendChild(DomHelper.createElement(child, doc));
+        if (tag instanceof Array) {
+            for (let child of tag) {
+                frag.appendChild(DomHelper.createElement(child, doc));
             }
+        } else if (tag instanceof Tag) {
+            frag.appendChild(DomHelper.createElement(tag, doc));
         }
         return frag;
     }
@@ -24,10 +19,19 @@ export default class DomHelper {
             return doc.createTextNode(tag.toString());
         }
         var node = doc.createElement(tag.name);
-        for (let [attr, value] of tag.attrs) {
-            if (!value) {
-                continue;
+        DomHelper.copyAttrs(tag, node);
+        if (tag.children && tag.children.length != 0) {
+            for (let child of tag.children) {
+                node.appendChild(DomHelper.createElement(child, doc));
             }
+        }
+        return node;
+    }
+
+    static copyAttrs(tag, node) {
+        for (let [attr, value] of tag.attrs) {
+            if (!value) continue;
+
             if (typeof value == 'object') {
                 let obj = node[attr];
                 for (let key in value) {
@@ -37,6 +41,5 @@ export default class DomHelper {
                 node.setAttribute(attr, value);
             }
         }
-        return node;
     }
 }

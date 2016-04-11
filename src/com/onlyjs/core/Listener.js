@@ -1,7 +1,22 @@
 export default class Listener {
 
-    constructor() {
+    constructor(page) {
+        this.page = page;
         this.events = new Map();
+    }
+
+    trigger(event) {
+        let handlers = this.events.get(event.target);
+        if (!handlers || handlers.size == 0) {
+            return;
+        }
+        let callbacks = handlers.get(event.type);
+        if (!callbacks || callbacks.length == 0) {
+            return;
+        }
+        for (let cb of callbacks) {
+            cb.apply(this, [event]);
+        }
     }
 
     register(id, type, callback) {
