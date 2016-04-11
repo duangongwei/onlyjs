@@ -11,7 +11,7 @@ Based on the newest features of ES6 (modules, classes, inheritance, etc.), refer
 一个页面 = Page.js(组件化开发) + Stylesheet.js(分组样式) + Listener.js(用户交互) + Service.js(业务逻辑)；
 
 ### 样例代码：
-1）创建一个登录页面：js/LoginPage.js (基于Bootstrap定制的组件库)
+1）创建一个登录页面：LoginPage.js (基于Bootstrap定制的组件库)
 ```
 import Page from '../com/onlyjs/Page';
 import Meta from '../com/onlyjs/tags/Meta';
@@ -56,7 +56,7 @@ export default class LoginPage extends Page {
     }
 }
 ```
-2）创建页面内部样式表：js/LoginStyle.js
+2）创建页面内部样式表：LoginStyle.js
 ```
 import Stylesheet from '../com/onlyjs/Stylesheet';
 
@@ -104,7 +104,7 @@ export default class LoginStyle extends Stylesheet {
     }
 }
 ```
-3）创建一个页面事件监听器：js/LoginListener.js
+3）创建一个页面事件监听器：LoginListener.js
 ```
 import Listener from '../com/onlyjs/Listener';
 
