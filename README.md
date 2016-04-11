@@ -1,19 +1,17 @@
 # onlyjs
 A web development framework using only javascript
 
-核心思想：
+## 核心思想
 基于ES6最新特性（模块化、类、继承等），参考Java Swing前端开发模式，将Web开发统一到Javascript上（类似Swing的纯Java开发）；
 让开发人员可以不用编写html、css，也不用操作DOM，一切功能和交互都可以通过纯JS对象的操作来实现。
 
-传统Web开发：
-一个页面 = html文件(文档结构) + css文件(显示样式) + js文件(控制逻辑、数据处理)；
-
-使用OnlyJS开发框架：
+* 传统Web开发： 一个页面 = html文件(文档结构) + css文件(显示样式) + js文件(控制逻辑、数据处理)；
+* 使用OnlyJS开发：
 一个页面 = Page.js(组件化开发) + Stylesheet.js(分组样式) + Listener.js(用户交互) + Service.js(业务逻辑)；
 
 样例代码：
-1）创建一个登录页面：js/LoginPage.js (基于Bootstrap定制的组件库)
-
+* 创建一个登录页面：js/LoginPage.js (基于Bootstrap定制的组件库)
+```
 import Page from '../com/onlyjs/Page';
 import Meta from '../com/onlyjs/tags/Meta';
 import Input from '../theme/bootstrap/widgets/Input';
@@ -56,9 +54,9 @@ export default class LoginPage extends Page {
             .append(new Button('loginBtn', 'button', 'Sign in'));
     }
 }
-
-2）创建页面内部样式表：js/LoginStyle.js
-
+```
+* 创建页面内部样式表：js/LoginStyle.js
+```
 import Stylesheet from '../com/onlyjs/Stylesheet';
 
 export default class LoginStyle extends Stylesheet {
@@ -104,9 +102,9 @@ export default class LoginStyle extends Stylesheet {
         ]
     }
 }
-
-3）创建一个页面事件监听器：js/LoginListener.js
-
+```
+* 创建一个页面事件监听器：js/LoginListener.js
+```
 import Listener from '../com/onlyjs/Listener';
 
 export default class LoginListener extends Listener {
@@ -130,3 +128,4 @@ export default class LoginListener extends Listener {
         }
     }
 }
+```
