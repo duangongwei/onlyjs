@@ -6,7 +6,15 @@ Based on the newest features of ES6 (modules, classes, inheritance, etc.), refer
 ### 核心思想
 基于ES6最新特性（模块化、类、继承等），参考Java Swing前端开发模式，将Web开发统一到Javascript上（类似Swing的纯Java开发），让开发人员可以`不用编写HTML、CSS，也不用操作DOM`，一切功能都通过JS对象之间的交互来实现，所有JS代码都可以脱离浏览器运行（一套代码可以运行在多种终端）。
 
-* **传统Web开发**： 一个页面 = html文件(文档结构) + css文件(显示样式) + js文件(控制逻辑、数据处理)；
+### 关键特性
+* 纯JS开发，不用写一行html代码（css也可以用JS来写），真正的用面向对象思维去开发Web应用；
+* 前端代码全部用JS类（ES6特性）封装，继承和重用变得如此Easy；
+* 所有Html标签全部映射为JS组件，组件自身就是可编程的，不用再定义模板；
+* 纯组件化开发模式，组件的扩展和复用更加简便，开发页面就像搭积木；
+* 采用虚拟DOM技术，不用再手工操作DOM元素，编写的代码可以脱离浏览器运行，让测试更简单；
+
+* **传统Web开发**： 
+一个页面 = html文件(文档结构) + css文件(显示样式) + js文件(控制逻辑、数据处理)；
 * **使用OnlyJS开发**：
 一个页面 = Page.js(组件化开发) + Stylesheet.js(分组样式) + Listener.js(用户交互) + Service.js(业务逻辑)；
 
