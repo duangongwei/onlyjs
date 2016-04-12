@@ -13,6 +13,7 @@ Based on the newest features of ES6 (modules, classes, inheritance, etc.), refer
 * 纯组件化开发模式，组件的扩展和复用更加简便，开发页面就像搭积木；
 * 采用虚拟DOM技术，不用再手工操作DOM元素，编写的代码可以脱离浏览器运行，让测试更简单；
 
+### 框架优势
 * **传统Web开发**： 
 一个页面 = html文件(文档结构) + css文件(显示样式) + js文件(控制逻辑、数据处理)；
 * **使用OnlyJS开发**：
