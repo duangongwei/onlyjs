@@ -1,5 +1,5 @@
 # OnlyJS
-A framework let you only use javascript to develop the Web application.
+A framework let you only use javascript to develop Web application.
 
 Based on the newest features of ES6 (modules, classes, inheritance, etc.), references to the Java Swing front-end development mode, to unify the web development to JavaScript (similar to Swing using pure Java), so that developers do not need to write HTML, CSS, and to operate on the DOM too, all functions can be implemented through the interaction between JavaScript objects, all the JS code you written can run out of browser (that is, the code can run in a variety of terminal).
 
@@ -11,9 +11,13 @@ Based on the newest features of ES6 (modules, classes, inheritance, etc.), refer
 * 前端代码全部用JS类（ES6特性）封装，继承和重用变得如此Easy；
 * 所有Html标签全部映射为JS组件，组件自身就是可编程的，不用再定义模板；
 * 纯组件化开发模式，组件的扩展和复用更加简便，开发页面就像搭积木；
-* 采用虚拟DOM技术，不用再手工操作DOM元素，编写的代码可以脱离浏览器运行，让测试更简单；
+* 采用虚拟DOM技术，不用再手工操作DOM元素，编写的代码可以脱离浏览器运行，让前端测试更简单；
+* 强大的代码转换工具，可以将html、css、Java代码转换为JS，同时支持将Swing开发的视图转换为Web页面；
 
-### 框架优势
+### 架构图
+![OnlyJS Architecture ](./assets/img/onlyjs_arch.png)
+
+### 开发模式
 * **传统Web开发**： 
 一个页面 = html文件(文档结构) + css文件(显示样式) + js文件(控制逻辑、数据处理)；
 * **使用OnlyJS开发**：
@@ -127,8 +131,8 @@ export default class LoginListener extends Listener {
     }
 
     login(event) {
-        let username = this.page.find('#username').get('value');
-        let password = this.page.find('#password').get('value');
+        let username = this.page.find('#username').value();
+        let password = this.page.find('#password').value();
         let message = this.page.find('#message');
         if (username == 'admin' && password == 'admin') {
             message.type('success').text('Login successful.').show();
